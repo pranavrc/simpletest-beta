@@ -6,8 +6,8 @@ jobs:
             - export: export HELLO=" 123 spaces ' singequote \" double quote "; echo $HELLO
             - secret: echo $MYSECRET
             - ls: pwd; ls;
-            - fail: env > /tmp/buildEnv; failstuff
-            - teardown-env: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; file=/tmp/buildEnv; cat $file; echo $HELLO; echo $MYSECRET
+            - fail: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; failstuff
+            - teardown-env: file=/tmp/buildEnv; cat $file; . $file; echo $HELLO; echo $MYSECRET
         requires: ~commit
         secrets:
             - MYSECRET
