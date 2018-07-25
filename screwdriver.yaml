@@ -5,10 +5,10 @@ jobs:
         steps:
             - export: export HELLO=" 123 spaces ' singequote \" double quote "
             - secret: echo $MYSECRET
-            - echo: prefix='export '; file=/tmp/buildEnv; newfile=/tmp/exportBuildEnv; env > $file; while read -r line; do echo ${prefix}$line; done < $file > $newfile; mv $newfile $file;
             - cat: cat /tmp/buildEnv
+            - cat2: cat /tmp/exportEnv
             - fail: failstuff
-            - teardown-env: file=/tmp/buildEnv; . $file; rm $file; echo $HELLO; echo $MYSECRET
+            - teardown-env: file=/tmp/exportEnv; . $file; echo $HELLO; echo $MYSECRET
         requires: ~commit
         secrets:
             - MYSECRET
