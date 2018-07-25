@@ -8,7 +8,7 @@ jobs:
             - ls: pwd; ls;
             - fail: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; failstuff
             - teardown-env: . /tmp/buildEnv; echo $HELLO;
-            - teardonw-secret: /tmp/buildEnv; echo $MYSECRET;
+            - teardown-secret: . /tmp/buildEnv; echo $MYSECRET;
         requires: ~commit
         secrets:
             - MYSECRET
