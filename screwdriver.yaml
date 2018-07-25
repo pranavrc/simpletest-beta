@@ -16,6 +16,7 @@ jobs:
         steps:
             - export: export FOO=BAR
             - fail: failstuff
+            - teardown-cat: cat /tmp/buildEnv
             - teardown-test: echo $FOO
     test2:
         steps:
