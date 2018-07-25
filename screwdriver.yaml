@@ -3,7 +3,7 @@ shared:
 jobs:
     test:
         steps:
-            - export: export HELLO=" 123 spaces ' singequote \" double quote "
+            - export: export HELLO=" 123 spaces ' singequote \" double quote "; echo $HELLO
             - secret: echo $MYSECRET
             - cat: cat /tmp/buildEnv
             - cat2: cat /tmp/exportEnv
