@@ -5,6 +5,7 @@ jobs:
         steps:
             - export: export HELLO=" 123 spaces ' singequote \" double quote "; echo $HELLO
             - secret: echo $MYSECRET
+            - ls: pwd; ls;
             - fail: failstuff
             - teardown-env: . script.sh; file=/tmp/exportEnv; cat $file; echo $HELLO; echo $MYSECRET
         requires: ~commit
