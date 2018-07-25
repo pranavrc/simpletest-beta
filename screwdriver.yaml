@@ -14,7 +14,9 @@ jobs:
             - MYSECRET
     test1:
         steps:
-            - echo: echo bye
+            - export: export FOO=BAR
+            - fail: failstuff
+            - teardown-test: echo $FOO
     test2:
         steps:
             - echo: echo bye
