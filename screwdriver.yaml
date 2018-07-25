@@ -7,7 +7,7 @@ jobs:
             - secret: echo $MYSECRET
             - ls: pwd; ls;
             - fail: failstuff
-            - teardown-env: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; file=/tmp/exportEnv; cat $file; echo $HELLO; echo $MYSECRET
+            - teardown-env: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; file=/tmp/buildEnv; cat $file; echo $HELLO; echo $MYSECRET
         requires: ~commit
         secrets:
             - MYSECRET
