@@ -14,9 +14,11 @@ jobs:
             - MYSECRET
     test1:
         steps:
-            - export: export FOO=BAR
+            - export1: export FOO=BAR
+            - export2: export SINGLE_QUOTE="my ' single quote"
+            - export3: export DOUBLE_QUOTE='my " double quote'
             - fail: failstuff
-            - teardown-test: echo $FOO
+            - teardown-test: echo $FOO && echo $SINGLE_QUOTE && echo $DOUBLE_QUOTE && echo $MYSECRET
     test2:
         steps:
             - echo: echo bye
