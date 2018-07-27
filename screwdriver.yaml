@@ -12,14 +12,13 @@ jobs:
         requires: ~commit
         secrets:
             - MYSECRET
-    test1:
+    test-with-new-launcher:
         steps:
             - export1: export FOO=BAR
             - export2: export SINGLE_QUOTE="my ' single quote"
             - export3: export DOUBLE_QUOTE='my " double quote'
             - fail: failstuff
             - teardown-test: echo $FOO && echo $SINGLE_QUOTE && echo $DOUBLE_QUOTE && echo $MYSECRET
-    test2:
-        steps:
-            - echo: echo bye
-        requires: [~test, ~test1]
+        secrets:
+            - MYSECRET
+        requires: ~commit
