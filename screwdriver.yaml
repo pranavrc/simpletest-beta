@@ -8,7 +8,7 @@ jobs:
             - ls: pwd; ls;
             - fail: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; failstuff
             - teardown-env: . /tmp/buildEnv; echo $HELLO; ls /tmp/
-            - teardown-secret: . /tmp/buildEnv; echo $MYSECRET; ls /tmp/
+            - teardown-secret: . /tmp/buildEnv; echo $MYSECRET;
         requires: ~commit
         secrets:
             - MYSECRET
@@ -19,7 +19,8 @@ jobs:
             - export3: export DOUBLE_QUOTE='my " double quote'
             - export4: export WEIRDCHAR="\!@#\$%^&*()_-+="
             - fail: failstuff
-            - teardown-test: echo $FOO && echo $SINGLE_QUOTE && echo $DOUBLE_QUOTE && echo $MYSECRET && echo $WEIRDCHAR && ls /tmp/
+            - teardown-test: echo $FOO && echo $SINGLE_QUOTE && echo $DOUBLE_QUOTE && echo $MYSECRET && echo $WEIRDCHAR
+            - teardown-ls: ls /tmp/
         secrets:
             - MYSECRET
         requires: ~commit
