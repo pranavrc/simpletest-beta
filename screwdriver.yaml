@@ -9,7 +9,7 @@ jobs:
             - fail: . /sd/workspace/src/github.com/d2lam/simpletest-beta/script.sh; failstuff
             - teardown-env: . /tmp/buildEnv; echo $HELLO; ls /tmp/
             - teardown-secret: . /tmp/buildEnv; echo $MYSECRET;
-        requires: ~commit
+        requires: [~pr, ~commit]
         secrets:
             - MYSECRET
     test-with-new-launcher:
@@ -23,4 +23,4 @@ jobs:
             - teardown-ls: ls /tmp/
         secrets:
             - MYSECRET
-        requires: ~commit
+        requires: [~pr, ~commit]
