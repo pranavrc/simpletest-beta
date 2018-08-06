@@ -13,7 +13,7 @@ jobs:
         requires: [~pr, ~commit]
         secrets:
             - MYSECRET
-    test-with-new-launcher:
+    test-2:
         steps:
             - export1: export FOO=BAR
             - export2: export SINGLE_QUOTE="my ' single quote"
