@@ -27,11 +27,11 @@ jobs:
         requires: [~pr, ~commit]
     test-shell-1:
         steps:
-            - echo "echo hello" > /tmp/test && source ./tmp/test
+            - echo "echo hello" > /tmp/test && source /tmp/test
         requires: [~pr, ~commit]
     test-shell-2:
         environment:
             USER_SHELL_BIN: bash
         steps:
-            - echo "echo hello" > /tmp/test && source ./tmp/test
+            - echo "echo hello" > /tmp/test && source /tmp/test
         requires: [~pr, ~commit]
