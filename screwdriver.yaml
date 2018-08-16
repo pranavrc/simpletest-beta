@@ -4,8 +4,8 @@ shared:
 jobs:
     test:
         steps:
-            - duplicate: echo hi
-            - duplicate: echo bye
+            - echo: echo hi
+            - echo: echo bye
         requires: [~pr, ~commit]
     test-2:
         steps:
