@@ -6,6 +6,7 @@ jobs:
         steps:
             - duplicate: echo hi
             - duplicate: echo bye
+        requires: [~pr, ~commit]
     test-2:
         steps:
             - export1: export FOO=BAR
