@@ -5,5 +5,5 @@ jobs:
     test:
         steps:
             - create: echo hi > /tmp/test
-            - upload: "curl -H \"Authorization: Bearer $SD_TOKEN\" -H \"Content-Type: text/plain\" -X PUT $STORE_URL/v1/events/$SD_EVENT_ID/mycache -T \"\/tmp\/test\""
+            - upload: "curl -H \"Authorization: Bearer $SD_TOKEN\" -H \"Content-Type: text/plain\" -X PUT \"$STORE_URL/v1/events/$SD_EVENT_ID/mycache\" -T \"\/tmp\/test\""
         requires: [~pr, ~commit]
