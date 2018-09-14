@@ -5,6 +5,8 @@ jobs:
     test:
         steps:
             - create: echo hi > /tmp/test
+            - token: echo $SD_TOKEN
+            - file: cat /tmp/test
             - echo: echo $STORE_URL/v1/events/$SD_EVENT_ID/mycache
             - upload: "curl -H \"Authorization: Bearer $SD_TOKEN\" -H \"Content-Type: text/plain\" -X PUT \"https://beta.store.screwdriver.cd/v1/events/$SD_EVENT_ID/mycache\" -T \"\/tmp\/test\""
         requires: [~pr, ~commit]
