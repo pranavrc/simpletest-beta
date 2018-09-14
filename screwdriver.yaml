@@ -4,28 +4,6 @@ shared:
 jobs:
     test:
         steps:
-            - echo: echo hi
-            - echo: echo bye
-        requires: [~pr, ~commit]
-    test-2:
-        steps:
-            - export1: export FOO=BAR
-            - export2: export SINGLE_QUOTE="my ' single quote"
-            - export3: export DOUBLE_QUOTE='my " double quote'
-            - export4: export WEIRDCHAR="\!@#\$%^&*()_-+="
-            - fail: failstuff
-            - teardown-test: echo $FOO && echo $SINGLE_QUOTE && echo $DOUBLE_QUOTE && echo $MYSECRET && echo $WEIRDCHAR
-            - teardown-ls: ls /tmp/
-        secrets:
-            - MYSECRET
-        requires: [~pr, ~commit]
-    test-shell-1:
-        steps:
-            - echo "echo hello" > /tmp/test && source /tmp/test
-        requires: [~pr, ~commit]
-    test-shell-2:
-        environment:
-            USER_SHELL_BIN: bash
-        steps:
-            - echo "echo hello" > /tmp/test && source /tmp/test
+            - create: echo hi > /tmp/test
+            - upload: curl -H \"Authorization: Bearer $SD_TOKEN\" -H \"Content-Type: text/plain\" -X PUT $STORE_URL/v1/events/$SD_EVENT_ID/mycache -T "/tmp/test"
         requires: [~pr, ~commit]
