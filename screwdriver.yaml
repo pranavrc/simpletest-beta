@@ -2,11 +2,18 @@
 shared:
     image: node:6
 jobs:
-    test:
+    test-get:
+        steps:
+            - upload: "curl -H \"Authorization: Bearer $SD_TOKEN\" -H \"Content-Type: text/plain\" -X PUT \"https://beta.store.screwdriver.cd/v1/events/$SD_EVENT_ID/mycache\" -T \"\/tmp\/test\""
+            - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
+            - cli-get: ./store-cli get mytest --type=cache --scope=event
+            - ls: ls
+        requires: [~pr, ~commit]
+     test-set:
         steps:
             - create: echo hi > /tmp/test
             - token: echo $SD_TOKEN
             - file: cat /tmp/test
             - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
-            - upload: ./store-cli set mytest /tmp/test --type=cache --scope=event
+            - cli-set: ./store-cli set mytest /tmp/test --type=cache --scope=event
         requires: [~pr, ~commit]
