@@ -13,4 +13,5 @@ jobs:
             - ls: ls
             - cli-get: ./store-cli get mycache --type=cache --scope=events
             - ls2: ls
+            - sleep: sleep 5000
         requires: [~pr, ~commit]
