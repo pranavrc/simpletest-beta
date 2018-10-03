@@ -9,7 +9,7 @@ jobs:
             - cli-get: ./store-cli get mytest --type=cache --scope=event
             - ls: ls
         requires: [~pr, ~commit]
-     test-set:
+    test-set:
         steps:
             - create: echo hi > /tmp/test
             - token: echo $SD_TOKEN
