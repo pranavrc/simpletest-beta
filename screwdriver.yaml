@@ -5,6 +5,7 @@ jobs:
     test-get:
         steps:
             - env: echo $SD_EVENT_ID
+            - ls0: ls /tmp
             - mkdir: mkdir /tmp/testcache
             - create: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
