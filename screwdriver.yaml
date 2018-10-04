@@ -4,7 +4,7 @@ shared:
 jobs:
     test-get:
         steps:
-            - env: echo $SD_EVENT_ID
+            - env: echo $SD_EVENT_ID && echo $SD_TOKEN
             - mkdir: mkdir /tmp/testcache
             - create: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
