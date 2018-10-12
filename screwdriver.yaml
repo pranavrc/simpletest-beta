@@ -1,21 +1,19 @@
-# test
 shared:
     image: node:6
 jobs:
-    test-job1:
+    test-get:
         steps:
-            - env: env
+            - env: echo $SD_EVENT_ID
             - mkdir: mkdir /tmp/testcache
             - create: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
             - create-3: echo world > /tmp/testcache/world
             - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
             - cli-set: ./store-cli set mycache /tmp/testcache/ --type=cache --scope=events
-            - sleep: sleep 1000
-        requires: [~pr, ~commit]
-    test-job2:
-        steps: 
-            - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
-            - cli-get: ./store-cli get mycache --type=cache --scope=events
             - ls: ls
-        requires: [test-job1]
+            - cli-get: ./store-cli get mycache --type=cache --scope=events
+            - ls2: ls
+            - cli-rm: ./store-cli remove mycache --type=cache --scope=events
+            - ls3: ls
+            - sleep: sleep 5000
+        requires: [~pr, ~commit]
