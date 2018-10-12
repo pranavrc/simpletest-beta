@@ -11,6 +11,7 @@ jobs:
             - create-3: echo world > /tmp/testcache/world
             - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
             - cli-set: ./store-cli set mycache /tmp/testcache/ --type=cache --scope=events
+            - sleep: sleep 100
         requires: [~pr, ~commit]
     test-job2:
         steps: 
