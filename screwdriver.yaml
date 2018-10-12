@@ -12,6 +12,7 @@ jobs:
         requires: [~commit, ~pr]
     job2:
         steps:
+            - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/v0.0.5 | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
             - cli-get: ./store-cli get mycache --type=cache --scope=events
             - ls2: ls
             - unzip: unzip mycache
