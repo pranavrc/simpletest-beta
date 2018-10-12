@@ -1,19 +1,16 @@
 shared:
     image: node:6
 jobs:
-    test-get:
+    job1:
         steps:
-            - env: echo $SD_EVENT_ID
             - mkdir: mkdir /tmp/testcache
-            - create: echo hi > /tmp/testcache/hi
+            - create-1: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
             - create-3: echo world > /tmp/testcache/world
             - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/v0.0.5 | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
             - cli-set: ./store-cli set mycache /tmp/testcache/ --type=cache --scope=events
-            - ls: ls
+    job2:
             - cli-get: ./store-cli get mycache --type=cache --scope=events
             - ls2: ls
-            - cli-rm: ./store-cli remove mycache --type=cache --scope=events
-            - ls3: ls
-            - sleep: sleep 5000
+            - unzip: unzip mycache
         requires: [~pr, ~commit]
