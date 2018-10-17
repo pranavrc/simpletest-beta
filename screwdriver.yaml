@@ -16,4 +16,5 @@ jobs:
         steps:
             - cli-get: store-cli get /tmp/testcache --type=cache --scope=event
             - ls: ls /tmp
+            - sleep: sleep 1000
         requires: [job1]
