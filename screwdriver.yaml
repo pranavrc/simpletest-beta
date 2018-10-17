@@ -10,10 +10,10 @@ jobs:
             - create-1: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
             - create-3: echo world > /tmp/testcache/world
-            - cli-set: store-cli set /tmp/testcache/ --type=cache --scope=events
+            - cli-set: store-cli set /tmp/testcache/ --type=cache --scope=event
         requires: [~commit, ~pr]
     job2:
         steps:
-            - cli-get: store-cli get --type=cache --scope=events
+            - cli-get: store-cli get --type=cache --scope=event
             - ls: ls
         requires: [job1]
