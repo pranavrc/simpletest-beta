@@ -14,6 +14,6 @@ jobs:
         requires: [~commit, ~pr]
     job2:
         steps:
-            - cli-get: store-cli get --type=cache --scope=event
-            - ls: ls
+            - cli-get: store-cli get /tmp/testcache --type=cache --scope=event
+            - ls: ls /tmp
         requires: [job1]
