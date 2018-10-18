@@ -25,5 +25,7 @@ jobs:
         requires: [~commit, ~pr]
     job22:
         steps:
+            - ls0: ls
             - store-cli get ./node_modules --type=cache --scope=event
+            - ls1: ls
         requires: [job11]
