@@ -20,7 +20,8 @@ jobs:
     job11:
         steps:
             - npm install
-            - store-cli set ./node_modules --type=cache --scope=event
+            - pwd
+            - cd .. && store-cli set ./simpletest-beta/node_modules --type=cache --scope=event
         requires: [~commit, ~pr]
     job22:
         steps:
