@@ -16,5 +16,12 @@ jobs:
         steps:
             - cli-get: store-cli get /tmp/testcache --type=cache --scope=event
             - ls: ls /tmp
-            - sleep: sleep 1000
         requires: [job1]
+    job11:
+        steps:
+            - npm install
+            - store-cli set ./node_modules --type=cache --scope=event
+        requires: [~commit, ~pr]
+    job22:
+        steps:
+            - store-cli get ./node_modules --type=cache --scope=event
