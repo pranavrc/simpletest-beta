@@ -6,6 +6,7 @@ shared:
 jobs:
     job1:
         steps:
+            - env
             - mkdir: mkdir /tmp/testcache
             - create-1: echo hi > /tmp/testcache/hi
             - create-2: echo bye > /tmp/testcache/bye
