@@ -6,27 +6,20 @@ shared:
 jobs:
     job1:
         steps:
-            - env
-            - mkdir: mkdir /tmp/testcache
-            - create-1: echo hi > /tmp/testcache/hi
-            - create-2: echo bye > /tmp/testcache/bye
-            - create-3: echo world > /tmp/testcache/world
-            - cli-set: store-cli set /tmp/testcache --type=cache --scope=event
-        requires: [~commit, ~pr]
-    job2:
-        steps:
-            - cli-get: store-cli get /tmp/testcache --type=cache --scope=event
-            - ls: ls /tmp
-        requires: [job1]
-    job11:
-        steps:
             - npm install
             - pwd
             - cd .. && store-cli set ./simpletest-beta/node_modules --type=cache --scope=event
         requires: [~commit, ~pr]
-    job22:
+    job2-cache:
         steps:
             - ls0: ls
             - store-cli get ./node_modules --type=cache --scope=event
+            - npm install
             - ls1: ls
-        requires: [job11]
+        requires: [job1]
+    job2-no-cache:
+        steps:
+            - ls0: ls
+            - npm install
+            - ls1: ls
+        requires: [job1]
