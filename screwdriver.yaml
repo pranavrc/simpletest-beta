@@ -25,3 +25,4 @@ jobs:
     job22:
         steps:
             - store-cli get ./node_modules --type=cache --scope=event
+        requires: [job11]
