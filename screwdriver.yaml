@@ -1,17 +1,16 @@
 cache:
     event:
-        - $SD_SOURCE_DIR/node_modules
+        - $SD_SOURCE_DIR/.gradle
 shared:
-    image: node:6
+    image: java:7
 jobs:
-    job1:
+    gradle1:
         steps:
             - env: env
-            - sleep: sleep 1000
-            - install: npm install
+            - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
         requires: [~commit, ~pr]
-    job2-cache:
+    gradle2-cache:
         steps:
             - ls: ls
-            - install: npm install
-        requires: [job1]
+            - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+        requires: [gradle1]
