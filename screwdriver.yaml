@@ -7,12 +7,9 @@ jobs:
     job1:
         steps:
             - env
-            - pwd
             - npm install
         requires: [~commit, ~pr]
     job2-cache:
         steps:
-            - ls0: ls
             - npm install
-            - ls1: ls
         requires: [job1]
