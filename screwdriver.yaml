@@ -3,10 +3,11 @@ shared:
 jobs:
     job1:
         steps:
-            - env
-            - npm install
+            - env: env
+            - install: npm install
         requires: [~commit, ~pr]
     job2-no-cache:
         steps:
-            - npm install
+            - ls: ls
+            - install: npm install
         requires: [job1]
