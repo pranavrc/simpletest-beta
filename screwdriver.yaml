@@ -1,3 +1,6 @@
+cache:
+    event:
+        - $SD_SOURCE_DIR/node_modules
 shared:
     image: node:6
 jobs:
@@ -6,7 +9,7 @@ jobs:
             - env: env
             - install: npm install
         requires: [~commit, ~pr]
-    job2-no-cache:
+    job2-cache:
         steps:
             - ls: ls
             - install: npm install
