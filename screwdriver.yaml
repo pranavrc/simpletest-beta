@@ -6,7 +6,7 @@ jobs:
             - env
             - npm install
         requires: [~commit, ~pr]
-    job2-cache:
+    job2-no-cache:
         steps:
             - npm install
         requires: [job1]
