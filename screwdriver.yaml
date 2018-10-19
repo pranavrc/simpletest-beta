@@ -1,13 +1,14 @@
 cache:
     event:
-        - /tmp/testcache
+        - $SD_SOURCE_DIR/node_modules
 shared:
     image: node:6
 jobs:
     job1:
         steps:
-            - npm install
+            - env
             - pwd
+            - npm install
             - cd .. && store-cli set ./simpletest-beta/node_modules --type=cache --scope=event
         requires: [~commit, ~pr]
     job2-cache:
