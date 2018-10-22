@@ -8,6 +8,7 @@ jobs:
         steps:
             - env: env
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+            - artifact: cp ~/.gradle $SD_ARTIFACTS_DIR/
         requires: [~commit, ~pr]
     gradle2-cache:
         steps:
