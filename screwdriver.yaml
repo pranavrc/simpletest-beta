@@ -1,14 +1,16 @@
-# test
+cache:
+    event:
+        - ~/.gradle
 shared:
-    image: node:6
+    image: java:7
 jobs:
-    test-get:
+    gradle1:
         steps:
             - env: env
-            - mkdir: mkdir /tmp/testcache
-            - create: echo hi > /tmp/testcache/hi
-            - create-2: echo bye > /tmp/testcache/bye
-            - create-3: echo world > /tmp/testcache/world
-            - install-cli: wget -q -O - https://github.com/screwdriver-cd/store-cli/releases/latest | egrep -o '/screwdriver-cd/store-cli/releases/download/v[0-9.]*/store-cli_linux_amd64' | wget --base=http://github.com/ -i - -O store-cli && chmod +x store-cli
-            - cli-set: ./store-cli set mycache /tmp/testcache/ --type=cache --scope=events
-        requires: [~pr, ~commit]
+            - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+        requires: [~commit, ~pr]
+    gradle2-cache:
+        steps:
+            - ls: ls
+            - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+        requires: [gradle1]
