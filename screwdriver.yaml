@@ -6,9 +6,14 @@ shared:
 jobs:
     gradle1:
         steps:
+            - ls: ls /root
             - env: env
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+            - cd: cd /root
+            - artifact: cp -r .gradle $SD_ARTIFACTS_DIR/
         requires: [~commit, ~pr]
+        environment:
+            SD_ZIP_ARTIFACTS: true
     gradle2-cache:
         steps:
             - ls: ls
