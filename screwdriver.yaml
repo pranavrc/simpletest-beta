@@ -12,6 +12,8 @@ jobs:
             - cd: cd /root
             - artifact: cp -r .gradle $SD_ARTIFACTS_DIR/
         requires: [~commit, ~pr]
+        environment:
+            - SD_ZIP_ARTIFACTS: true
     gradle2-cache:
         steps:
             - ls: ls
