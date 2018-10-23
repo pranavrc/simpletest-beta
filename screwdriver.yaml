@@ -10,7 +10,9 @@ jobs:
         image: node:6
         steps:
             - env: env
-            - ls: ls /tmp
+            - ls-tmp: ls /tmp
+            - ls-gradle: ls ~/
+            - ls-node: ls
             - echo: echo hi > /tmp/testblah
     npm1:
         image: node:6
