@@ -21,10 +21,12 @@ jobs:
     npm2:
         image: node:6
         steps:
+            - ls: ls
             - install: npm install
         requires: [npm1]
     gradle:
         image: java:7
         steps:
+            - ls: ls ~/
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
         requires: [~commit, ~pr]
