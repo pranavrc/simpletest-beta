@@ -5,24 +5,26 @@ cache:
         - ~/.gradle
     job:
         test-job: [/tmp/test]
-shared:
-    image: java:7
 jobs:
     test-job:
+        image: alpine
         steps:
             - env: env
             - ls: ls /tmp/test
             - echo: echo hi > /tmp/test
         requires: [~commit, ~pr]
     npm1:
+        image: node:6
         steps:
             - install: npm install
         requires: [~commit, ~pr]
     npm2:
+        image: node:6
         steps:
             - install: npm install
         requires: [npm1]
     gradle:
+        image: java:7
         steps:
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
         requires: [~commit, ~pr]
