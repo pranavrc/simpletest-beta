@@ -10,7 +10,7 @@ jobs:
         image: node:6
         steps:
             - env: env
-            - ls: ls /tmp/test
+            - ls: ls /tmp
             - echo: echo hi > /tmp/test
         requires: [~commit, ~pr]
     npm1:
