@@ -11,7 +11,7 @@ jobs:
         steps:
             - env: env
             - ls-tmp: ls /tmp
-            - ls-gradle: ls ~/
+            - ls-gradle: ls /root
             - ls-node: ls
             - echo: echo hi > /tmp/testblah
     npm1:
