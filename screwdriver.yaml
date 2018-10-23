@@ -4,20 +4,18 @@ cache:
     pipeline:
         - ~/.gradle
     job:
-        test-job: [/tmp/test]
+        test-job: [/tmp/testblah]
 jobs:
     test-job:
         image: node:6
         steps:
             - env: env
             - ls: ls /tmp
-            - echo: echo hi > /tmp/test
-        requires: [~commit, ~pr]
+            - echo: echo hi > /tmp/testblah
     npm1:
         image: node:6
         steps:
             - install: npm install
-        requires: [~commit, ~pr]
     npm2:
         image: node:6
         steps:
@@ -29,4 +27,3 @@ jobs:
         steps:
             - ls: ls ~/
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
-        requires: [~commit, ~pr]
