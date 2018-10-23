@@ -7,7 +7,7 @@ cache:
         test-job: [/tmp/test]
 jobs:
     test-job:
-        image: alpine
+        image: node:6
         steps:
             - env: env
             - ls: ls /tmp/test
