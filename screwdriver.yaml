@@ -1,21 +1,31 @@
 cache:
     event:
+        - $SD_SOURCE_DIR/node_modules
+    pipeline:
         - ~/.gradle
-shared:
-    image: java:7
+    job:
+        test-job: [/tmp/testblah]
 jobs:
-    gradle1:
+    test-job:
+        image: node:6
         steps:
-            - ls: ls /root
             - env: env
-            - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
-            - cd: cd /root
-            - artifact: cp -r .gradle $SD_ARTIFACTS_DIR/
-        requires: [~commit, ~pr]
-        environment:
-            SD_ZIP_ARTIFACTS: true
-    gradle2-cache:
+            - ls-tmp: ls /tmp
+            - ls-gradle: ls /root
+            - ls-node: ls
+            - echo: echo hi > /tmp/testblah
+    npm1:
+        image: node:6
+        steps:
+            - install: npm install
+    npm2:
+        image: node:6
         steps:
             - ls: ls
+            - install: npm install
+        requires: [npm1]
+    gradle:
+        image: java:7
+        steps:
+            - ls: ls ~/
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
-        requires: [gradle1]
