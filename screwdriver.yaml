@@ -31,4 +31,7 @@ jobs:
         steps:
             - ls: ls ~/
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+            - upload: mv -r ~/.gradle $SD_ARTIFACTS_DIR/
+        environment:
+            SD_ZIP_ARTIFACTS: true
         requires: [~commit, ~pr]
