@@ -14,10 +14,12 @@ jobs:
             - ls-gradle: ls /root; ls ~/; 
             - ls-node: ls
             - echo: echo hi > /tmp/testblah
+        requires: [~commit, ~pr]
     npm1:
         image: node:6
         steps:
             - install: npm install
+        requires: [~commit, ~pr]
     npm2:
         image: node:6
         steps:
@@ -29,3 +31,4 @@ jobs:
         steps:
             - ls: ls ~/
             - install: git clone https://github.com/gradle-guides/gradle-site-plugin.git && cd gradle-site-plugin && ./gradlew build
+        requires: [~commit, ~pr]
