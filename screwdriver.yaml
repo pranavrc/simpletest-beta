@@ -1,10 +1,10 @@
-#cache:
-#    event:
-#        - $SD_SOURCE_DIR/node_modules
-#    pipeline:
-#        - ~/.gradle
-#    job:
-#        test-job: [/tmp/testblah]
+cache:
+    event:
+        - $SD_SOURCE_DIR/node_modules
+    pipeline:
+        - ~/.gradle
+    job:
+        test-job: [/tmp/testblah]
 jobs:
     test-job:
         image: node:6
